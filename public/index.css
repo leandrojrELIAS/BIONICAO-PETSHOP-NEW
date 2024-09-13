@@ -1,0 +1,125 @@
+/* Reset some default styling */
+body, h1, h2, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #2e8b57;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+
+header .logo img {
+    height: 100px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+.product-display {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.product-display h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.slideshow {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slideshow .slides {
+    display: flex;
+    gap: 10px;
+    overflow-x: hidden; /* Esconde o conteúdo que sai da área */
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    transition: transform 0.5s ease; /* Transição suave para a mudança de imagem */
+}
+
+.slideshow .slides img {
+    flex: 0 0 auto;
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    scroll-snap-align: start;
+}
+
+footer {
+    background-color: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 24px;
+    height: 24px;
+}

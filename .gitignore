@@ -1,0 +1,15 @@
+# Ignorar o arquivo .env que contém informações sensíveis
+*.env
+
+# Ignorar node_modules
+*node_modules/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar o diretório de build (se aplicável)
+dist/
+
+# Ignorar configurações de IDE (opcional)
+.vscode/
+.idea/
