@@ -1,8 +1,8 @@
-// Função para formatar a data e hora para exibição 
+// Função para formatar a data e hora
 function formatarDataHora(dataISO, hora) {
     const data = new Date(dataISO);
 
-    // Ajuste o fuso horário se necessário
+    // Ajuste de  fuso horário se necessário
     const dataLocal = new Date(data.getTime() + data.getTimezoneOffset() * 60000);
 
     // Formatação da data
@@ -28,8 +28,8 @@ document.getElementById('agendamentoForm').addEventListener('submit', async func
         servico: document.getElementById('servico').value,
         dataAgendamento: document.getElementById('dataAgendamento').value,
         horaAgendamento: document.getElementById('horaAgendamento').value,
-        nomeDono: document.getElementById('nomeDono').value,  // Corrigido campo "Nome do Dono"
-        contatoDono: document.getElementById('contatoDono').value  // Corrigido campo "Contato do Dono"
+        nomeDono: document.getElementById('nomeDono').value,  
+        contatoDono: document.getElementById('contatoDono').value  
     };
 
     try {
@@ -38,7 +38,7 @@ document.getElementById('agendamentoForm').addEventListener('submit', async func
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(agendamento) // Enviando o objeto `agendamento` diretamente
+            body: JSON.stringify(agendamento) // Envia o objeto `agendamento` diretamente evitando erros 
         });
 
         if (response.ok) {
