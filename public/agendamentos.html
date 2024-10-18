@@ -1,4 +1,3 @@
-<!------ v2-------->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,6 +18,8 @@
         <section id="form-agendamento">
             <h2>Agendamento de Serviços</h2>
             <form id="agendamentoForm">
+                <input type="hidden" id="agendamentoId" name="agendamentoId">
+                
                 <label for="nomeDono">Nome do Dono do Pet:</label>
                 <input type="text" id="nomeDono" name="nomeDono" required>
                 
@@ -41,6 +42,7 @@
                 <select id="servico" name="servico" required>
                     <option value="Banho e Tosa">Banho e Tosa</option>
                     <option value="Atendimento Veterinário">Atendimento Veterinário</option>
+                    <option value="Banho">Banho</option>
                 </select>
 
                 <label for="dataAgendamento">Data para Agendamento:</label>
@@ -49,7 +51,11 @@
                 <label for="horaAgendamento">Hora para Agendamento:</label>
                 <input type="time" id="horaAgendamento" name="horaAgendamento" required>
 
-                <button type="submit">Agendar</button>
+                <!-- Botões dentro da div para estilo flexbox -->
+                <div class="button-container">
+                    <button type="submit">Agendar</button>
+                    <button type="button" onclick="limparFormulario()">Limpar</button>
+                </div>
             </form>
         </section>
 

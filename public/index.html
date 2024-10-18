@@ -15,16 +15,21 @@
             <img src="images/logo.jpg" alt="Logo da Pet Shop">
         </div>
         <section class="main-content">
-            <h1>Bem-vindo Ao Pet Shop Bionicao</h1>
+            <h1> Pet Shop Bionicao Funcionarios </h1>
         </section>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="agendamentos.html">Agendamentos</a></li>
-                <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
     </header>
+    <script>
+        // Verificar se o usuário está autenticado
+        if (!localStorage.getItem('userId')) {
+            window.location.href = 'login.html';
+        }
+    </script>
 
     <main>
         <section class="product-display">
@@ -52,5 +57,14 @@
         </div>
     </footer>
 </body>
+<script>
+    // Adicione este script no final do body
+    document.querySelector('nav').innerHTML += '<li><a href="#" onclick="logout()">Sair</a></li>';
+    
+    function logout() {
+        localStorage.removeItem('userId');
+        window.location.href = 'login.html';
+    }
+</script>
 
 </html>

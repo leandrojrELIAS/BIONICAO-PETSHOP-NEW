@@ -1,10 +1,12 @@
-require('dotenv').config();  // Carrega as variáveis de ambiente do .env
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const nodemailer = require('nodemailer');
-const Agendamento = require('./models/Agendamentos'); // Corrigido o caminho
+const serverless = require('serverless-http');
+const Agendamento = require('./models/Agendamentos');
+const authRoutes = require('./routes/auth');
+const agendamentoRoutes = require('./routes/agendamentos');
 
 const app = express();
 
@@ -22,11 +24,14 @@ mongoose.connect(process.env.DATABASE_URL, {
 .then(() => console.log('Conectado ao MongoDB com sucesso!'))
 .catch((error) => console.error('Erro ao conectar ao MongoDB:', error));
 
+// Rotas
+app.use('/.netlify/functions/api/auth', authRoutes);
+app.use('/.netlify/functions/api/agendamentos', agendamentoRoutes);
+
 // Rota para enviar o formulário de contato por e-mail
-app.post('/api/send-email', (req, res) => {
+app.post('/.netlify/functions/api/send-email', (req, res) => {
     const { nomeContato, emailContato, mensagemContato } = req.body;
 
-    // Configuração do transporte de e-mail usando variáveis de ambiente
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -42,7 +47,6 @@ app.post('/api/send-email', (req, res) => {
         text: mensagemContato,
     };
 
-    // Enviando o e-mail
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Erro ao enviar o e-mail:', error);
@@ -54,14 +58,9 @@ app.post('/api/send-email', (req, res) => {
     });
 });
 
-// Importando e usando as rotas de agendamentos
-const agendamentoRoutes = require('./routes/agendamentos');
-app.use('/api/agendamentos', agendamentoRoutes);
-
 // Rota para a página inicial
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+module.exports.handler = serverless(app);
